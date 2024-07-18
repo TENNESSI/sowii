@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h2>Запись на турнир</h2>
+
+	<form method="POST">
+		{% for msg in get_flashed_messages() %}
+			<div class="error">
+				{{ msg }}
+			</div>
+		{% endfor %}
+
+		Введите никнейм
+		<input type="text" name='nickname' placeholder="никнейм"><br>
+		Введите ммр
+		<input type="text" name='mmr' placeholder="6520"><br>
+		Введите id аккаунта в доте
+		<input type="text" name='dotaid' placeholder="12345678"><br>
+		<input type="submit" class='btn' value="Записаться">
+		<br>
+	</form>
+{% endblock %}

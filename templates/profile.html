@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h2>Пользователь: {{ username }}</h2>
+	{% if current_user.username == username %}
+		<a href="/logout">Выйти из аккаунта</a>
+	{% endif %}
+	<h3 style='text-align: center;'>Игроки</h3>
+	{% for player in players %}
+		{% if player.nickname == username %}
+			<div class="players">
+				<div class="player">
+					<div class="header">
+						<h2>{{ player.nickname }}</h2>
+					</div>
+						{{ player.mmr }}
+					<hr>
+					Дата: {{ player.created_on }}
+				</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+{% endblock %}
