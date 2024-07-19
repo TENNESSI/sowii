@@ -111,6 +111,11 @@ def profile(username: str):
 
 	return render_template('profile.html', username=username, players=players)
 
+@app.route('/cup')
+def cup():
+	players = Player.query.order_by(desc(Player.created_on)).all()
+	return render_template('cup.html', players=players)
+
 @login_required
 @app.route('/new', methods=['GET', 'POST'])
 def new_player():

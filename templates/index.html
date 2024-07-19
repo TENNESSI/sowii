@@ -1,17 +1,5 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	{% for player in players %}
-			<div class="players">
-				<div class="player">
-					<div class="header">
-						<h2>{{ player.nickname }}</h2>
-					</div>
-						{{ player.mmr }}
-					<hr>
-					<a href="/profile/{{ player.nickname }}">Никнейм: {{ player.nickname }}
-					Дата: {{ player.created_on }}
-				</div>
-			</div>
-	{% endfor %}
+
 {% endblock %}

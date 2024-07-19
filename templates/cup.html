@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+		<table class="table">
+	  <thead class="thead-dark">
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Никнейм</th>
+	      <th scope="col">Рейтинг</th>
+	      <th scope="col">ID аккаунта</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for player in players %}
+		    <tr>
+		      <th scope="row">{{ player.id }}</th>
+		      <td>{{ player.nickname }}</td>
+		      <td>{{ player.mmr }}</td>
+		      <td>{{ player.dotaid }}</td>
+		    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+{% endblock %}
