@@ -27,6 +27,7 @@ class User(UserMixin, db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(63), index=True, unique=True)
 	password_hash = db.Column(db.String(127))
+	isadmin = db.Column(db.Boolean())
 
 	def set_password(self, password):
 		self.password_hash = generate_password_hash(password)
@@ -61,13 +62,14 @@ def reg():
 		username = request.form['username']
 		password = request.form['password']
 		password2 = request.form['password2']
+		isadmin = False
 
 		if password2 != password2:
 			flash('Пароли не совпадают!!')
 			return render_template('reg.html')
 
 		try:
-			user = User(username=username)
+			user = User(username=username, isadmin=isadmin)
 			user.set_password(password)
 			db.session.add(user)
 			db.session.commit()
@@ -115,6 +117,14 @@ def profile(username: str):
 def cup():
 	players = Player.query.order_by(desc(Player.created_on)).all()
 	return render_template('cup.html', players=players)
+
+@app.route('/admin')
+def admin():
+	if not current_user.is_authenticated:
+		return redirect(url_for('index'))
+	else:
+		players = Player.query.order_by(desc(Player.created_on)).all()
+		return render_template('admin.html', players=players)
 
 @login_required
 @app.route('/new', methods=['GET', 'POST'])

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+		<table class="table">
+	  <thead class="thead-dark">
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Никнейм</th>
+	      <th scope="col">Рейтинг</th>
+	      <th scope="col">ID аккаунта</th>
+	      <th scope="col">Управление</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for player in players %}
+		    <tr>
+		      <th scope="row">{{ player.id }}</th>
+		      <td>{{ player.nickname }}</td>
+		      <td>{{ player.mmr }}</td>
+		      <td>{{ player.dotaid }}</td>
+		      <td>
+					<div class="dropdown">
+					  <button class="btn" style="border-left:1px solid navy">
+					    <i class="fa fa-caret-down">Penis</i>
+					  </button>
+					  <div class="dropdown-content">
+					    <a href="#">Скрыть</a>
+					    <a href="#">Удалить</a>
+					    <a href="#">Сделать администратором</a>
+					  </div>
+					</div>
+		      </td>
+		    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+{% endblock %}
